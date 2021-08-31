@@ -1,0 +1,122 @@
+<div class="col-sm-6 col-md-6 col-lg-6">
+  <form>
+   <div class="form-group">
+    <label for="name">Name : </label>
+    <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}" placeholder="Enter Name" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label for="dateofbirth">DateOfBirth : </label>
+    <input type="date" [(ngModel)]="dateofbirth" [ngModelOptions]="{standalone: true}" placeholder="Enter DateOfBirth" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label for="salary">Salary : </label>
+    <input type="number" [(ngModel)]="salary" [ngModelOptions]="{standalone: true}" placeholder="Enter Salary" class="form-control">
+    </div>
+
+      <div class="form-group">
+      <label for="designation">Designation : </label>
+      <input type="text" [(ngModel)]="designation" [ngModelOptions]="{standalone: true}" placeholder="Enter Designation" class="form-control">
+      </div>
+
+        <div class="form-group">
+        <label for="joiningdate">JoiningDate : </label>
+        <input type="date" [(ngModel)]="joiningdate" [ngModelOptions]="{standalone: true}" placeholder="Enter JoiningDate" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="exitdate">ExitDate : </label>
+          <input type="date" [(ngModel)]="exitdate" [ngModelOptions]="{standalone: true}" placeholder="Enter ExitDate" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="manager">Manager : </label>
+            <input type="text" [(ngModel)]="manager" [ngModelOptions]="{standalone: true}" placeholder="Enter Manager" class="form-control">
+            </div>
+  <button (click)="addemployee()" class="btn btn-success">Submit</button>
+  </form>
+  </div>
+ <br>
+ 
+ <div class="col-sm-6 col-md-6 col-lg-6">
+ <form>
+  <div [hidden]="showupdateform==0" class="form-group">
+   <label for="id">Id : </label>
+   <input type="number" [(ngModel)]="editid" [ngModelOptions]="{standalone: true}" class="form-control">
+   </div>
+
+   <div [hidden]="showupdateform==0" class="form-group">
+     <label for="name">Name : </label>
+     <input type="text" [(ngModel)]="editname" [ngModelOptions]="{standalone: true}" class="form-control">
+     </div>
+
+     <div [hidden]="showupdateform==0" class="form-group">
+       <label for="dateofbirth">DateOfBirth : </label>
+       <input type="date" [(ngModel)]="editdateofbirth" [ngModelOptions]="{standalone: true}" class="form-control">
+       </div>
+
+       <div [hidden]="showupdateform==0" class="form-group">
+        <label for="salary">Salary : </label>
+        <input type="number" [(ngModel)]="editsalary" [ngModelOptions]="{standalone: true}" class="form-control">
+        </div>
+
+        <div [hidden]="showupdateform==0" class="form-group">
+          <label for="designation">Designation : </label>
+          <input type="text" [(ngModel)]="editdesignation" [ngModelOptions]="{standalone: true}" class="form-control">
+          </div>
+
+          <div [hidden]="showupdateform==0" class="form-group">
+            <label for="joiningdate">joiningdate : </label>
+            <input type="date" [(ngModel)]="editjoiningdate" [ngModelOptions]="{standalone: true}" class="form-control">
+            </div>
+
+            <div [hidden]="showupdateform==0" class="form-group">
+              <label for="exitdate">ExitDate : </label>
+              <input type="date" [(ngModel)]="editexitdate" [ngModelOptions]="{standalone: true}" class="form-control">
+              </div>
+
+              <div [hidden]="showupdateform==0" class="form-group">
+                <label for="manager">Manager : </label>
+                <input type="text" [(ngModel)]="editmanager" [ngModelOptions]="{standalone: true}" class="form-control">
+       <button (click)="updateemployee()" class="btn btn-success">Submit</button>
+       </div>
+       </form>
+       </div>
+       <br>
+ 
+ 
+ <div class="container-fluid">
+   <div class="row">
+       <div class="col-sm-12 col-md-12 col-lg-12">
+           <table class="table table-striped table-bordered table-hover table-dark">
+             <thead>
+               <th>Id</th>
+               <th>Name</th>
+               <th>DateOfBirth</th>
+               <th>Salary</th>
+               <th>Designation</th>
+               <th>JoiningDate</th>
+               <th>ExitDate</th>
+               <th>Manager</th>
+               <th>EDIT</th>
+               <th>DELETE</th>
+               </thead>
+               <tbody>
+                <tr *ngFor="let employee of employee;index as i">  
+                 <td>{{i+1}}</td>
+                 <td>{{employee.name}}</td>
+                 <td>{{employee.dateofbirth}}</td>
+                 <td>{{employee.salary}}</td>
+                 <td>{{employee.designation}}</td>
+                 <td>{{employee.joiningdate}}</td>
+                 <td>{{employee.exitdate}}</td>
+                 <td>{{employee.manager}}</td>
+                 <td><button (click)="editemployee(employee)" class="btn btn-primary">Edit</button></td>
+                 <td><button (click)="deleteemployee(employee.id)" class="btn btn-danger">Delete</button></td>
+               </tr>
+               </tbody>
+               </table>
+               </div>
+               </div>
+               </div>

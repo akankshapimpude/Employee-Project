@@ -1,0 +1,117 @@
+import { Component } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'emp-project';
+
+  employee;
+  id;
+  name;
+  dateofbirth;
+  salary;
+  designation;
+  joiningdate;
+  exitdate;
+  manager;
+
+  constructor(private http:HttpClient)
+  {
+    let url='http://localhost:8080/get';
+    this.http.get(url).subscribe((abcd)=>{
+      this.employee=abcd;
+      console.log(this.employee);
+    });
+  }
+
+  deleteemployee(id)
+  {
+    let url='http://localhost:8080/delete/'+id;
+    this.http.get(url).subscribe((abcd)=>{
+      this.employee=abcd;
+    });
+  }
+
+  addemployee()
+  {
+    if(this.name!=null)
+    {
+    let employee={
+      "id": 0,
+      "name": this.name,
+      "dateofbirth": this.dateofbirth,
+      "salary": this.salary,
+      "designation": this.designation,
+      "joiningdate": this.joiningdate,
+      "exitdate": this.exitdate,
+      "manager": this.manager
+    };
+    let url='http://localhost:8080/add';
+    this.http.post(url,employee).subscribe((abcd)=>{
+      this.employee=abcd;
+      this.id=null;
+      this.name=null;
+      this.dateofbirth=null;
+      this.salary=null;
+      this.designation=null;
+      this.joiningdate=null;
+      this.exitdate=null;
+      this.manager=null;
+    });
+    }
+  }
+
+  editid;
+  editname;
+  editdateofbirth;
+  editsalary;
+  editdesignation;
+  editjoiningdate;
+  editexitdate;
+  editmanager;
+  showupdateform=0;
+
+  editemployee(employee)
+  {
+    this.showupdateform=1;
+    this.editid=employee.id;
+    this.editname=employee.name;
+    this.editdateofbirth=employee.dateofbirth;
+    this.editsalary=employee.salary;
+    this.editdesignation=employee.designation;
+    this.editjoiningdate=employee.joiningdate;
+    this.editexitdate=employee.exitdate;
+    this.editmanager=employee.manager;
+  }
+
+  updateemployee()
+  {
+    this.showupdateform=0;
+    let employee={
+      "id": this.editid,
+      "name":this.editname,
+      "dateofbirth": this.editdateofbirth,
+      "salary": this.editsalary,
+      "designation": this.editdesignation,
+      "joiningdate": this.editjoiningdate,
+      "exitdate": this.editexitdate,
+      "manager": this.editmanager
+    };
+    let url='http://localhost:8080/add';
+    this.http.post(url,employee).subscribe((abcd)=>{
+      this.employee=abcd;
+      this.editid=null;
+      this.editname=null;
+      this.editdateofbirth=null;
+      this.editsalary=null;
+      this.editdesignation=null,
+      this.editjoiningdate=null;
+      this.editexitdate=null;
+      this.editmanager=null;
+    });
+  }
+}
